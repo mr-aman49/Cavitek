@@ -1,4 +1,6 @@
 import React from 'react';
+// Import the About image
+import aboutImage from '../assets/About.jpg';
 
 export default function About() {
   return (
@@ -12,14 +14,8 @@ export default function About() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80"
-              alt="Team meeting"
-              className="rounded-lg shadow-lg"
-            />
-          </div>
+        <div className="text-center mb-16">
+        
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
             <p className="text-gray-600 mb-6">

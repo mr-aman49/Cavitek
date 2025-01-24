@@ -1,32 +1,50 @@
 import React from 'react';
 import type { Product } from '../types';
-import ultraComfortPadImg from '../assets/pexels-karolina-grabowska-4238992.jpg';
-import nightProtectionPadImg from '../assets/maddi-bazzocco-2LJkFMdaDUY-unsplash.jpg';
-import activeFitPadImg from '../assets/yellow-cactus-Z05kqyq_4NU-unsplash.jpg';
+import ultraComfortPadImg from '../assets/Regular(20Pcs.).jpg';
+import nightProtectionPadImg from '../assets/XXL(6Pcs.).jpg';
+import activeFitPadImg from '../assets/XXL(18Pcs.).jpg';
+import regularNightProtectionPadImg from '../assets/Xl(6Pcs).jpg';
+import regularProtectionPadImg from '../assets/Regular(7Pcs).jpg';
 
 const SAMPLE_PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Ultra Comfort Pads',
+    name: 'Regular(20Pcs.)',
     description: 'Our premium pads with maximum absorption and comfort for day use.',
-    price: 8.99,
+    price:  90,
     image_url: ultraComfortPadImg,
     category: 'day'
   },
   {
     id: '2',
-    name: 'Night Protection Pads',
+    name: 'XXL(6Pcs.)',
     description: 'Extra-long pads with wings for complete overnight protection.',
-    price: 9.99,
+    price: 90,
     image_url: nightProtectionPadImg,
     category: 'night'
   },
   {
     id: '3',
-    name: 'Active Fit Pads',
+    name: 'XXL(18Pcs.)',
     description: 'Designed for active lifestyles with secure fit and moisture control.',
-    price: 7.99,
+    price: 230,
     image_url: activeFitPadImg,
+    category: 'active'
+  },
+  {
+    id: '4',
+    name: 'XL(6Pcs.)',
+    description: 'Designed for active lifestyles with secure fit and moisture control.',
+    price: 38,
+    image_url: regularNightProtectionPadImg,
+    category: 'active'
+  },
+  {
+    id: '5',
+    name: 'Regular(7Pcs)',
+    description: 'Designed for active lifestyles with secure fit and moisture control.',
+    price: 30,
+    image_url: regularProtectionPadImg,
     category: 'active'
   }
 ];
@@ -50,7 +68,7 @@ export default function Products() {
                 <p className="text-gray-600 mb-4">{product.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold text-pink-500">
-                    ${product.price.toFixed(2)}
+                  ₹{product.price.toFixed(2)}
                   </span>
                   <button className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">
                     Add to Cart

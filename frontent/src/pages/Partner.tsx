@@ -10,9 +10,29 @@ export default function Partner() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState({
+    email: '',
+    phone: ''
+  });
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+      return false;
+    }
+    setErrors(prev => ({ ...prev, email: '' }));
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const isEmailValid = validateEmail(formData.email);
+    
+    if (!isEmailValid) {
+      return;
+    }
+
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -67,10 +87,16 @@ export default function Partner() {
                 type="email"
                 id="email"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                className={`mt-1 block w-full rounded-md shadow-sm focus:ring-pink-500 ${
+                  errors.email ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-pink-500'
+                }`}
                 value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                onChange={(e) => {
+                  setFormData(prev => ({ ...prev, email: e.target.value }));
+                  validateEmail(e.target.value);
+                }}
               />
+              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
             </div>
 
             <div>
