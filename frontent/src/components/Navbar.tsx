@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.jpg'; // Adjust the path based on your folder structure
+import logo from '../assets/logoo.jpg'; // Adjust the path based on your folder structure
 
 export default function Navbar() {
   return (
@@ -12,7 +12,7 @@ export default function Navbar() {
               <img 
                 src={logo} 
                 alt="Zeero Logo" 
-                className="h-10 w-auto"
+                className="h-12 w-auto" // Increased height from h-10 to h-12
               />
               <div className="ml-3">
                 <span className="text-xl font-semibold text-gray-800">Livca Personal Care</span>

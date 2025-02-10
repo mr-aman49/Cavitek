@@ -5,6 +5,7 @@ import nightProtectionPadImg from '../assets/XXL(6Pcs.).jpg';
 import activeFitPadImg from '../assets/XXL(18Pcs.).jpg';
 import regularNightProtectionPadImg from '../assets/Xl(6Pcs).jpg';
 import regularProtectionPadImg from '../assets/Regular(7Pcs).jpg';
+import zeeroultraPad from '../assets/zeero ultra.jpg'
 
 const SAMPLE_PRODUCTS: Product[] = [
   {
@@ -46,7 +47,15 @@ const SAMPLE_PRODUCTS: Product[] = [
     price: 30,
     image_url: regularProtectionPadImg,
     category: 'active'
-  }
+  },
+  {
+    id: '6',
+    name: 'Ultra(6Pcs.)',
+    description: 'Our premium pads with maximum absorption and comfort for day use.',
+    price:  45,
+    image_url: zeeroultraPad,
+    category: 'day'
+  },
 ];
 
 export default function Products() {

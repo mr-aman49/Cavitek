@@ -6,7 +6,7 @@ import { Shield, Heart, Leaf, Star } from 'lucide-react';
 import bannerImage from '../assets/pexels-karolina-grabowska-4238992.jpg';
 import bannerVideo from '../assets/7719710-uhd_4096_2160_25fps.mp4';
 import productFirst from '../assets/main.jpg';
-import logo from '../assets/logo.jpg'; // Add your logo file here
+import logo from '../assets/logoo.jpg'; // Add your logo file here
 import aboutImage from '../assets/About.jpg'; // Add your "about" image here
 
 export default function Home() {

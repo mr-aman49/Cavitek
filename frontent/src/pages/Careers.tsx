@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Briefcase, Upload, Check, X } from 'lucide-react';
+import { Briefcase, Upload, Check } from 'lucide-react';
 
 const openPositions = [
   {
@@ -31,59 +31,16 @@ export default function Careers() {
     email: '',
     phone: '',
     position: '',
-    resume: null as File | null,
     coverLetter: ''
   });
-  const [errors, setErrors] = useState({
-    email: '',
-    phone: ''
-  });
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
-      return false;
-    }
-    setErrors(prev => ({ ...prev, email: '' }));
-    return true;
-  };
+  const handleSubmit = () => {
+    const subject = encodeURIComponent(`Job Application for ${formData.position}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nPosition: ${formData.position}\n\nCover Letter:\n${formData.coverLetter}`
+    );
 
-  const validatePhone = (phone: string) => {
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(phone)) {
-      setErrors(prev => ({ ...prev, phone: 'Phone number must be exactly 10 digits' }));
-      return false;
-    }
-    setErrors(prev => ({ ...prev, phone: '' }));
-    return true;
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      if (file.size > 10 * 1024 * 1024) { // 10MB limit
-        alert('File size must be less than 10MB');
-        return;
-      }
-      setFormData(prev => ({
-        ...prev,
-        resume: file
-      }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const isEmailValid = validateEmail(formData.email);
-    const isPhoneValid = validatePhone(formData.phone);
-    
-    if (!isEmailValid || !isPhoneValid) {
-      return;
-    }
-    
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    window.location.href = `mailto:amanraj.87892@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -119,7 +76,10 @@ export default function Careers() {
         {/* Application Form */}
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-8">Apply Now</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <p className="text-sm text-gray-600 mb-4">
+            * Please send all details via email by clicking the submit button below.
+          </p>
+          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
             <div>
               <label className="block text-sm font-medium text-gray-700">Name</label>
               <input
@@ -136,16 +96,10 @@ export default function Careers() {
               <input
                 type="email"
                 required
-                className={`mt-1 block w-full rounded-md shadow-sm focus:ring-pink-500 ${
-                  errors.email ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-pink-500'
-                }`}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.email}
-                onChange={(e) => {
-                  setFormData(prev => ({ ...prev, email: e.target.value }));
-                  validateEmail(e.target.value);
-                }}
+                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
               />
-              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
             </div>
 
             <div>
@@ -154,17 +108,10 @@ export default function Careers() {
                 type="tel"
                 required
                 maxLength={10}
-                className={`mt-1 block w-full rounded-md shadow-sm focus:ring-pink-500 ${
-                  errors.phone ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-pink-500'
-                }`}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.phone}
-                onChange={(e) => {
-                  const value = e.target.value.replace(/\D/g, '').slice(0, 10);
-                  setFormData(prev => ({ ...prev, phone: value }));
-                  validatePhone(value);
-                }}
+                onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
               />
-              {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
             </div>
 
             <div>
@@ -185,57 +132,24 @@ export default function Careers() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Resume</label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div className="space-y-1 text-center">
-                  {formData.resume ? (
-                    <div className="flex flex-col items-center">
-                      <Check className="h-12 w-12 text-green-500" />
-                      <p className="text-sm text-gray-600">{formData.resume.name}</p>
-                      <button
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, resume: null }))}
-                        className="mt-2 text-sm text-red-600 hover:text-red-500"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                      <div className="flex text-sm text-gray-600">
-                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-pink-600 hover:text-pink-500">
-                          <span>Upload a file</span>
-                          <input
-                            type="file"
-                            className="sr-only"
-                            accept=".pdf,.doc,.docx"
-                            onChange={handleFileChange}
-                          />
-                        </label>
-                      </div>
-                      <p className="text-xs text-gray-500">PDF, DOC up to 10MB</p>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Cover Letter</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Cover Letter <span className="text-gray-500 text-sm">(Optional)</span>
+              </label>
               <textarea
                 rows={4}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.coverLetter}
                 onChange={(e) => setFormData(prev => ({ ...prev, coverLetter: e.target.value }))}
+                placeholder="Tell us why you'd be a great fit for this position (optional)"
               />
             </div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className="w-full bg-pink-500 text-white py-2 px-4 rounded-md hover:bg-pink-600"
             >
-              Submit Application
+              Send Application via Email
             </button>
           </form>
         </div>

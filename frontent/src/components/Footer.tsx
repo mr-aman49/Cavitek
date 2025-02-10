@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Twitter } from 'lucide-react';
 // Import the logo image
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logoo.jpg';
 
 export default function Footer() {
   return (
@@ -11,8 +11,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center">
-              {/* Replace Heart with logo */}
-              <img src={logo} alt="Livca Logo" className="h-8 w-8" />
+              {/* Increased logo size */}
+              <img src={logo} alt="Livca Logo" className="h-12 w-12" />
               <span className="ml-2 text-lg font-semibold">Livca Personal Care</span>
             </div>
             <p className="mt-4 text-gray-600">
