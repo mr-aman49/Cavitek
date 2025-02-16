@@ -79,7 +79,7 @@ export default function Products() {
                 <p className="text-gray-600 mb-4">{product.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold text-pink-500">
-                    ${product.price.toFixed(2)}
+                  ₹{product.price.toFixed(2)}
                   </span>
                   <a
                     href={AMAZON_STORE_URL}
