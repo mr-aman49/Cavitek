@@ -1,18 +1,19 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import type { Product } from '../types';
 import ultraComfortPadImg from '../assets/Regular(20Pcs.).jpg';
 import nightProtectionPadImg from '../assets/XXL(6Pcs.).jpg';
 import activeFitPadImg from '../assets/XXL(18Pcs.).jpg';
 import regularNightProtectionPadImg from '../assets/Xl(6Pcs).jpg';
 import regularProtectionPadImg from '../assets/Regular(7Pcs).jpg';
-import zeeroultraPad from '../assets/zeero ultra.jpg'
+import zeeroultraPad from '../assets/zeero ultra.jpg';
 
 const SAMPLE_PRODUCTS: Product[] = [
   {
     id: '1',
     name: 'Regular(20Pcs.)',
     description: 'Our premium pads with maximum absorption and comfort for day use.',
-    price:  90,
+    price: 90,
     image_url: ultraComfortPadImg,
     category: 'day'
   },
@@ -52,7 +53,7 @@ const SAMPLE_PRODUCTS: Product[] = [
     id: '6',
     name: 'Ultra(6Pcs.)',
     description: 'Our premium pads with maximum absorption and comfort for day use.',
-    price:  45,
+    price: 45,
     image_url: zeeroultraPad,
     category: 'day'
   },
@@ -62,13 +63,30 @@ const AMAZON_STORE_URL = "https://www.amazon.in/l/27943762031?me=A1EDAW7S7V8TOH&
 
 export default function Products() {
   return (
-    <div className="bg-white">
+    <motion.div 
+      className="bg-white"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl font-bold text-center mb-12">Our Products</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, scale: 0.95 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 0.5, staggerChildren: 0.2 } }
+          }}
+        >
           {SAMPLE_PRODUCTS.map((product) => (
-            <div key={product.id} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <motion.div 
+              key={product.id} 
+              className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              whileHover={{ scale: 1.05 }}
+            >
               <img
                 src={product.image_url}
                 alt={product.name}
@@ -79,7 +97,7 @@ export default function Products() {
                 <p className="text-gray-600 mb-4">{product.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold text-pink-500">
-                  ₹{product.price.toFixed(2)}
+                    ₹{product.price.toFixed(2)}
                   </span>
                   <a
                     href={AMAZON_STORE_URL}
@@ -91,10 +109,10 @@ export default function Products() {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
