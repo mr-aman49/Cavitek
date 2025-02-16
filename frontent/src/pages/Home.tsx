@@ -100,7 +100,7 @@ export default function Home() {
                 Shop Now
               </Link>
               <a
-                href="https://www.amazon.in"
+                href="https://www.amazon.in/l/27943762031?me=A1EDAW7S7V8TOH&tag=ShopReferral_c18a282c-c0cc-4f66-aa14-3f1132278c2b&ref=sf_seller_app_share_new_ls_srb"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white text-pink-500 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 inline-block"
@@ -162,7 +162,7 @@ export default function Home() {
               </p>
               
               <a
-                href="https://www.amazon.in"
+                href="https://www.amazon.in/l/27943762031?me=A1EDAW7S7V8TOH&tag=ShopReferral_c18a282c-c0cc-4f66-aa14-3f1132278c2b&ref=sf_seller_app_share_new_ls_srb"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white text-pink-500 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 inline-block"
