@@ -1,31 +1,61 @@
 import React from 'react';
 import type { Product } from '../types';
+import ultraComfortPadImg from '../assets/Regular(20Pcs.).jpg';
+import nightProtectionPadImg from '../assets/XXL(6Pcs.).jpg';
+import activeFitPadImg from '../assets/XXL(18Pcs.).jpg';
+import regularNightProtectionPadImg from '../assets/Xl(6Pcs).jpg';
+import regularProtectionPadImg from '../assets/Regular(7Pcs).jpg';
+import zeeroultraPad from '../assets/zeero ultra.jpg'
 
 const SAMPLE_PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Ultra Comfort Pads',
+    name: 'Regular(20Pcs.)',
     description: 'Our premium pads with maximum absorption and comfort for day use.',
-    price: 8.99,
-    image_url: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80',
+    price:  90,
+    image_url: ultraComfortPadImg,
     category: 'day'
   },
   {
     id: '2',
-    name: 'Night Protection Pads',
+    name: 'XXL(6Pcs.)',
     description: 'Extra-long pads with wings for complete overnight protection.',
-    price: 9.99,
-    image_url: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80',
+    price: 90,
+    image_url: nightProtectionPadImg,
     category: 'night'
   },
   {
     id: '3',
-    name: 'Active Fit Pads',
+    name: 'XXL(18Pcs.)',
     description: 'Designed for active lifestyles with secure fit and moisture control.',
-    price: 7.99,
-    image_url: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80',
+    price: 230,
+    image_url: activeFitPadImg,
     category: 'active'
-  }
+  },
+  {
+    id: '4',
+    name: 'XL(6Pcs.)',
+    description: 'Designed for active lifestyles with secure fit and moisture control.',
+    price: 38,
+    image_url: regularNightProtectionPadImg,
+    category: 'active'
+  },
+  {
+    id: '5',
+    name: 'Regular(7Pcs)',
+    description: 'Designed for active lifestyles with secure fit and moisture control.',
+    price: 30,
+    image_url: regularProtectionPadImg,
+    category: 'active'
+  },
+  {
+    id: '6',
+    name: 'Ultra(6Pcs.)',
+    description: 'Our premium pads with maximum absorption and comfort for day use.',
+    price:  45,
+    image_url: zeeroultraPad,
+    category: 'day'
+  },
 ];
 
 const AMAZON_STORE_URL = "https://www.amazon.in/l/27943762031?me=A1EDAW7S7V8TOH&tag=ShopReferral_c18a282c-c0cc-4f66-aa14-3f1132278c2b&ref=sf_seller_app_share_new_ls_srb";
