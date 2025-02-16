@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center">
               {/* Increased logo size */}
-              <img src={logo} alt="Livca Logo" className="h-12 w-12" />
+              <img src={logo} alt="Livca Logo" className="h-12 w-15" />
               <span className="ml-2 text-lg font-semibold">Livca Personal Care</span>
             </div>
             <p className="mt-4 text-gray-600">
