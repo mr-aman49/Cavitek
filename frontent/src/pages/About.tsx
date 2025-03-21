@@ -82,7 +82,7 @@ export default function About() {
               <h3 className="text-xl font-semibold mb-2">Ritik Goyal</h3>
               <p className="text-gray-600 mb-3">Sales Head</p>
               <p className="text-gray-500 max-w-sm mx-auto">
-                Leading our sales initiatives with over 10 years of experience in the feminine hygiene industry.
+              Responsible for developing and executing sales strategies, leading a sales team, achieving revenue targets, and identifying new business opportunities, all while staying ahead of market trends and ensuring operational efficiency.
               </p>
             </div>
             <div className="text-center">
@@ -96,7 +96,7 @@ export default function About() {
                   <span className="text-white text-lg font-semibold">Connect on LinkedIn</span>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2">KETAN goyal</h3>
+              <h3 className="text-xl font-semibold mb-2">Ketan Goyal</h3>
               <p className="text-gray-600 mb-3">Marketing Head</p>
               <p className="text-gray-500 max-w-sm mx-auto">
                 Driving our brand strategy and digital presence with innovative marketing approaches.
