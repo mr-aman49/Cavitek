@@ -1,38 +1,58 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function Partner() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-    company: "",
-    type: "",
+    name: '',
+    email: '',
+    message: '',
+    company: '',
+    type: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState({
+    email: '',
+    phone: ''
   });
 
-  const [errors, setErrors] = useState({ email: "" });
-
-  // ✅ Explicitly typed function for email validation
-  const validateEmail = (email: string): boolean => {
+  const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setErrors({ email: "Please enter a valid email address" });
+      setErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
       return false;
     }
-    setErrors({ email: "" });
+    setErrors(prev => ({ ...prev, email: '' }));
     return true;
   };
 
-  // ✅ Submit button redirects to email client
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateEmail(formData.email)) return;
+    const isEmailValid = validateEmail(formData.email);
+    
+    if (!isEmailValid) {
+      return;
+    }
 
-    const subject = encodeURIComponent(`Partnership Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nPartnership Type: ${formData.type}\n\nMessage:\n${formData.message}`
-    );
+    setIsSubmitting(true);
 
-    window.location.href = `mailto:amanraj.87892@gmail.com?subject=${subject}&body=${body}`;
+    // Create mailto link with form data
+    const subject = 'New Partnership Application';
+    const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company}
+Partnership Type: ${formData.type}
+
+Message:
+${formData.message}
+    `;
+    
+    window.location.href = `mailto:gketan709@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Reset form
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', message: '', company: '', type: '' });
+    setIsSubmitting(false);
   };
 
   return (
@@ -44,67 +64,77 @@ export default function Partner() {
             Join us in our mission to provide quality feminine hygiene products to women everywhere.
           </p>
 
-          <p className="text-sm text-gray-600 mb-4">
-            * Please send all details via email by clicking the button below.
-          </p>
+          {submitStatus === 'success' && (
+            <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-md">
+              Thank you for your interest! We'll review your application and get back to you soon.
+            </div>
+          )}
+
+          {submitStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-md">
+              There was an error submitting your application. Please try again.
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Name</label>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                Name
+              </label>
               <input
                 type="text"
+                id="name"
                 required
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.name}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFormData((prev) => ({ ...prev, name: e.target.value }))
-                }
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
               />
             </div>
 
-            {/* Email Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
               <input
                 type="email"
+                id="email"
                 required
                 className={`mt-1 block w-full rounded-md shadow-sm focus:ring-pink-500 ${
-                  errors.email ? "border-red-300 focus:border-red-500" : "border-gray-300 focus:border-pink-500"
+                  errors.email ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-pink-500'
                 }`}
                 value={formData.email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setFormData((prev) => ({ ...prev, email: e.target.value }));
+                onChange={(e) => {
+                  setFormData(prev => ({ ...prev, email: e.target.value }));
                   validateEmail(e.target.value);
                 }}
               />
               {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
             </div>
 
-            {/* Company Name Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Company Name</label>
+              <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+                Company Name
+              </label>
               <input
                 type="text"
+                id="company"
                 required
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.company}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFormData((prev) => ({ ...prev, company: e.target.value }))
-                }
+                onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
               />
             </div>
 
-            {/* Partnership Type Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Partnership Type</label>
+              <label htmlFor="type" className="block text-sm font-medium text-gray-700">
+                Partnership Type
+              </label>
               <select
+                id="type"
                 required
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.type}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setFormData((prev) => ({ ...prev, type: e.target.value }))
-                }
+                onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value }))}
               >
                 <option value="">Select a partnership type</option>
                 <option value="distributor">Distributor</option>
@@ -114,27 +144,27 @@ export default function Partner() {
               </select>
             </div>
 
-            {/* Message Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">Message</label>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                Message
+              </label>
               <textarea
+                id="message"
                 required
                 rows={4}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
                 value={formData.message}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                  setFormData((prev) => ({ ...prev, message: e.target.value }))
-                }
+                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                 placeholder="Tell us about your business and how you'd like to partner with us"
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-pink-500 text-white py-2 px-4 rounded-md hover:bg-pink-600"
+              disabled={isSubmitting}
+              className="w-full bg-pink-500 text-white py-2 px-4 rounded-md hover:bg-pink-600 disabled:bg-pink-300"
             >
-              Send Email
+              {isSubmitting ? 'Submitting...' : 'Submit Application'}
             </button>
           </form>
         </div>

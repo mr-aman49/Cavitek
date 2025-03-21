@@ -6,8 +6,11 @@ import { Shield, Heart, Leaf, Star } from 'lucide-react';
 import bannerImage from '../assets/pexels-karolina-grabowska-4238992.jpg';
 import bannerVideo from '../assets/7719710-uhd_4096_2160_25fps.mp4';
 import productFirst from '../assets/main.jpg';
-import logo from '../assets/logoo.jpg'; // Add your logo file here
-import aboutImage from '../assets/About.jpg'; // Add your "about" image here
+import logo from '../assets/logoo.jpg';
+import aboutImage from '../assets/About.jpg';
+import martImage from '../assets/mart.jpg';
+import medicalImage from '../assets/medical.jpg';
+import beautyImage from '../assets/beauty.jpg';
 
 export default function Home() {
   const [currentBackground, setCurrentBackground] = useState(0);
@@ -29,33 +32,30 @@ export default function Home() {
   const testimonials = [
     {
       id: 1,
-      name: 'Sarah Johnson',
-      role: 'Working Professional',
+      name: 'Mrs. Anjali Kumawat',
+      role: 'Anjali Beauty Parlour',
       content:
-        'Zeero pads have changed my life! The comfort and protection they provide is unmatched. I can confidently go about my day without any worries.',
+        'Zeero pads have revolutionized feminine care with their exceptional quality and comfort. My clients consistently praise their reliability.',
       rating: 5,
-      image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80',
+      image: beautyImage
     },
     {
       id: 2,
-      name: 'Priya Sharma',
-      role: 'College Student',
+      name: 'Mrs. Dimple Sharma',
+      role: 'Wellness Medical Store, Jaipur',
       content:
-        'Finally found pads that are both eco-friendly and super comfortable. Zeero pads are truly revolutionary!',
+        'As a healthcare provider, I appreciate Zeero\'s commitment to quality and hygiene. These pads are truly a game-changer for women\'s health.',
       rating: 5,
-      image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80',
+      image: medicalImage
     },
     {
       id: 3,
-      name: 'Emily Chen',
-      role: 'Athlete',
+      name: 'Mr. Ramesh Kumar',
+      role: 'BK Super Mart',
       content:
-        'As an athlete, I need products I can trust. Zeero pads provide the perfect protection during intense workouts.',
+        'The demand for Zeero pads in my store has been overwhelming. Customers love the comfort and eco-friendly approach.',
       rating: 5,
-      image:
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80',
+      image: martImage
     },
   ];
 
@@ -155,10 +155,10 @@ export default function Home() {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Niine Biodegradable & Compostable Sanitary Napkin
+                Biodegradable & Compostable Sanitary Napkin
               </h3>
               <p className="text-gray-600 text-lg mb-6">
-                Niine provides sanitary pads for women that are ideal for both light and heavy flow days. Made with natural and biodegradable materials for a sustainable period experience.
+                Zeero provides sanitary pads for women that are ideal for both light and heavy flow days. Made with natural and biodegradable materials for a sustainable period experience.
               </p>
               
               <a
@@ -206,16 +206,19 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="bg-white p-6 rounded-lg shadow-md">
+              <div 
+                key={testimonial.id} 
+                className="bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              >
                 <div className="flex items-center mb-4">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-pink-200"
                   />
                   <div className="ml-4">
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <h3 className="font-semibold text-lg">{testimonial.name}</h3>
+                    <p className="text-pink-600">{testimonial.role}</p>
                   </div>
                 </div>
                 <div className="flex mb-4">
@@ -223,7 +226,7 @@ export default function Home() {
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-600">{testimonial.content}</p>
+                <p className="text-gray-600 italic">{testimonial.content}</p>
               </div>
             ))}
           </div>
